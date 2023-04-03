@@ -1,4 +1,6 @@
-### MKT4830
+### MKT4830 HW1
+
+![github-link](https://github.com/harunkurtme/MKT4830-Introduction-to-Image-Processing/tree/master/HW1)
 
 In this study, the methods I used
 
