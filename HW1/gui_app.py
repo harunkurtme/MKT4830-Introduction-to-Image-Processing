@@ -5,7 +5,7 @@ import os
 from glob import glob
 from tqdm import tqdm
 import os
-
+from tkinter import filedialog
 from model import Image2Drawer
 
 class ImageWindow(Image2Drawer):
@@ -16,14 +16,20 @@ class ImageWindow(Image2Drawer):
         self.master = master
         
         self.master.title("Teknik Resim Yazdırma Arayüzü 2006A701_Harun_KURT")
+        self.folder_path = ""
         self.image_list=[]
-        for img in self.getImages4tqdm():
-            self.image_list.append(img)
+        "faarklı klasöre geçince hata verdiyior daha sonra ilgilen"
+        # for img in self.getImages4tqdm():
+        #     print(img)
+        #     self.image_list.append(img)
         self.current_image = 0
         self.processed_label = tk.Label(self.master)
         self.processed_label.pack(side=tk.RIGHT)
         self.original_label = tk.Label(self.master)
         self.original_label.pack(side=tk.LEFT)
+        # Dosya seçme butonunu oluşturuyoruz
+        self.folder_button = tk.Button(self.master, text="Dosya Seç", command=self.select_folder)
+        self.folder_button.pack()
         self.button_frame = tk.Frame(self.master)
         self.button_frame.pack(side=tk.BOTTOM)
         self.back_button = tk.Button(self.button_frame, text="<<", command=self.back)
@@ -32,7 +38,7 @@ class ImageWindow(Image2Drawer):
         self.save_button.pack(side=tk.LEFT)
         self.next_button = tk.Button(self.button_frame, text=">>", command=self.next)
         self.next_button.pack(side=tk.RIGHT)
-        self.load_image()
+        # self.load_image()
         
     def load_image(self):
         image_path = self.image_list[self.current_image]
@@ -41,6 +47,23 @@ class ImageWindow(Image2Drawer):
         self.original_photo = ImageTk.PhotoImage(image=Image.fromarray(image))
         self.original_label.config(image=self.original_photo)
         self.processed_func(self.drawed_img(image=image))
+    
+    
+    def select_folder(self):
+            # Kullanıcının dosya klasörünü seçmesi için bir pencere açıyoruz
+        self.folder_path = filedialog.askdirectory()
+
+        # Dosya klasöründeki tüm resim dosyalarını listeliyoruz
+        for file_name in os.listdir(self.folder_path):
+            if file_name.endswith(".jpg") or file_name.endswith(".jpeg") or file_name.endswith(".png"):
+                self.image_list.append(os.path.join(self.folder_path, file_name))
+
+        # İlk resmi yükleyerek diğer butonları aktif hale getiriyoruz
+        self.load_image()
+        self.back_button.config(state=tk.NORMAL)
+        self.save_button.config(state=tk.NORMAL)
+        self.next_button.config(state=tk.NORMAL)
+        self.folder_button.config(state=tk.DISABLED)
     
     def processed_func(self,processed_img):
         self.processed_photo = ImageTk.PhotoImage(image=Image.fromarray(processed_img))
