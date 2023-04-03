@@ -180,4 +180,4 @@ if __name__ == '__main__':
     import time
     fileType = "*.jpeg"
     filesPath = os.getcwd()+'/HW1/images/'
-    Image2Drawer(filesPath=filesPath, fileType=fileType).draw_paper_show()
+    # Image2Drawer(filesPath=filesPath, fileType=fileType).draw_paper_show()
