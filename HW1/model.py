@@ -98,14 +98,14 @@ class GetImages:
     def get_point_distance(self, img, midpoint: int, p1: int, p2: int, distance: float):
 
         if (distance > 30):
-            cv2.putText(img, f" {distance:.1f}",
+            cv2.putText(img, f" D: {distance:.1f}",
                         midpoint, cv2.FONT_HERSHEY_SIMPLEX, 0.5, self.color_distance, 1)
 
         return img
 
     def get_text_radius_img(self, radius: int, center: int, img):
         cv2.putText(
-            img, f"{radius}", center, cv2.FONT_HERSHEY_SIMPLEX, 0.5, self.color_radius, 1)
+            img, f"R: {radius}", center, cv2.FONT_HERSHEY_SIMPLEX, 0.5, self.color_radius, 1)
         return img
 
     def getImages4Glob(self) -> list:

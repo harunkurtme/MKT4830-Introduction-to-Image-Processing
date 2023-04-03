@@ -50,7 +50,6 @@ class ImageWindow(Image2Drawer):
     
     
     def select_folder(self):
-            # Kullanıcının dosya klasörünü seçmesi için bir pencere açıyoruz
         self.folder_path = filedialog.askdirectory()
 
         # Dosya klasöründeki tüm resim dosyalarını listeliyoruz
