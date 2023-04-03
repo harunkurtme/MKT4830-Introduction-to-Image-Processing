@@ -8,7 +8,10 @@ I make a list by capturing the edges of the image I obtained, then find its cont
 
 I made the application over tkinter so that it appeals to the end user. And I provide access to the pictures in different folders with the application and save the desired processed picture.
 
+# for folder select
 ![](./screen_shot/Capture1.PNG)
+# image showing
 ![](./screen_shot/Capture2.PNG)
+# image radius and distance add
 ![](./screen_shot/Capture3.PNG)
 
